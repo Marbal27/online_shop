@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import MainWrapper from './components/MainWrapper'
+import MainWrapper from './components/MainWrapper.vue'
 
 export default {
   name: 'App',

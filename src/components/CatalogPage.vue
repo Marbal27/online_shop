@@ -1,9 +1,12 @@
 <template>
     <div class="catalog-page">
-        <h1>hello</h1>
+        <p>Каталог товаров</p>
+        <div class="catalog-page__list">
+            <catalog-item></catalog-item>
+        </div>
     </div>
 
-    <catalog-item></catalog-item>
+    
 </template>
 
 <script>
@@ -18,5 +21,11 @@ export default {
 </script>
 
 <style>
-
+.catalog-page__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    
+}
 </style>

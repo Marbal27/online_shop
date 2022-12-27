@@ -30,11 +30,12 @@ export default {
 
 <style>
 .main-wrapper {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     max-width: 900px;
-    margin: 0 auto;
+    margin: 0 auto; */
+    
 }
 </style>

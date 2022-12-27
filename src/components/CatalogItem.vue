@@ -2,9 +2,9 @@
     <div class="catalog-item" v-for="(product, index) in products" :key="index">
         <div class="catalog-item__card">
             <img :src="product.image" height="110" width="110">
-            <h5 class="catalog-item__name">{{ product.title }}</h5>
-            <h5>{{ product.category }}</h5>
-            <h2>{{ product.price *68}}руб</h2>
+            <a class="catalog-item__name">{{ product.title }}</a>
+            <a>{{ product.category }}</a>
+            <h2 style="font-family: 'Oswald'; ">{{ product.price * 68 }}руб</h2>
             <div class="rating">
                 <div class="rating__body">
                     <div class="rating__active"></div>
@@ -18,14 +18,19 @@
                 </div>
                 <div class="rating__value">{{ product.rating.rate }}</div>
             </div>
+
         </div>
 
     </div>
 </template>
 
 <script>
+
 export default {
     name: "CatalogItem",
+    components: {
+    },
+
     data() {
         return {
             model: false,
@@ -36,7 +41,8 @@ export default {
         fetch('https://fakestoreapi.com/products')
             .then(res => res.json())
             .then(json => { this.products = json })
-    }
+    },
+
 }
 </script>
 
@@ -44,25 +50,43 @@ export default {
 .catalog-item {
     /* flex-basis: 20%; */
     width: 163px;
-    height: 288px;
+    height: 100%;
     background: #fff4f2;
     border-radius: 10px;
     margin-bottom: 37px;
+
 }
 
-.catalog-item__name{
+.catalog-item__name {
     overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
-.rating{
+.catalog-item__card {
+    text-align: center;
+    padding-top: 20px;
+}
+
+a {
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    padding-top: 15px;
+    color: #000000;
+}
+
+.rating {
     display: flex;
     align-items: flex-end;
-    font-size: 40px;
+    font-size: 25px;
     line-height: 0.75;
+    justify-content: center;
+    padding-bottom: 20px;
 }
 
 .rating__body {
@@ -113,5 +137,4 @@ export default {
     line-height: 1;
     padding: 0px 0px 0px 10px;
 }
-
 </style>

@@ -17,6 +17,8 @@
                         <input type="radio" class="rating__item" name="rating" value="5">
                     </div>
                 </div>
+                <star-rating></star-rating>
+                <!-- <vue3starRatings v-model="product.rating.rate" /> -->
                 <div class="rating__value">{{ product.rating.rate }}</div>
             </div>
 
@@ -26,10 +28,16 @@
 </template>
 
 <script>
-
+import StarRating from 'vue-star-rating';
+// import vue3starRatings from "vue3-star-ratings";
 export default {
     name: "CatalogItem",
     components: {
+        StarRating,
+        // vue3starRatings,
+    },
+    props: {
+
     },
 
     data() {

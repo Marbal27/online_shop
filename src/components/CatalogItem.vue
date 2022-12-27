@@ -4,10 +4,10 @@
             <img :src="product.image" height="110" width="110">
             <a class="catalog-item__name">{{ product.title }}</a>
             <a>{{ product.category }}</a>
-            <h2 style="font-family: 'Oswald'; ">{{ product.price * 68 }}руб</h2>
-            <button class="catalog-item__button">Add to cart</button>
+            <h2 style="font-family:'Oswald';">{{ product.price * 68 }}руб</h2>
+            <button class="catalog-item__button">Добавить в корзину</button>
             <div class="rating">
-                <div class="rating__body">
+                <!-- <div class="rating__body">
                     <div class="rating__active"></div>
                     <div class="rating__items">
                         <input type="radio" class="rating__item" name="rating" value="1">
@@ -16,10 +16,9 @@
                         <input type="radio" class="rating__item" name="rating" value="4">
                         <input type="radio" class="rating__item" name="rating" value="5">
                     </div>
-                </div>
-                <star-rating></star-rating>
-                <!-- <vue3starRatings v-model="product.rating.rate" /> -->
-                <div class="rating__value">{{ product.rating.rate }}</div>
+                </div> -->
+                <star-rating :rating="product.rating.rate" class="rating__star" v-bind:star-size="20" ></star-rating>
+                <!-- <div class="rating__value">({{ product.rating.rate }})</div> -->
             </div>
 
         </div>
@@ -29,14 +28,13 @@
 
 <script>
 import StarRating from 'vue-star-rating';
-// import vue3starRatings from "vue3-star-ratings";
 export default {
     name: "CatalogItem",
     components: {
         StarRating,
-        // vue3starRatings,
     },
     props: {
+        
 
     },
 
@@ -44,6 +42,7 @@ export default {
         return {
             model: false,
             products: [],
+
         }
     },
     mounted() {
@@ -56,6 +55,16 @@ export default {
 </script>
 
 <style>
+.rating__star {
+    font-size: 50%;
+    /* padding: 0px 0px 0px 10px; */
+}
+
+.rating__value {
+    font-size: 50%;
+    /* padding: 0px 0px 0px 10px; */
+} 
+
 img {
     border-radius: 7px;
 }
@@ -101,7 +110,7 @@ a {
 
 .catalog-item__button {
     width: 100px;
-    height: 35px;
+    height: 60px;
     text-align: center;
     display: block;
     font-family: 'Oswald';
@@ -113,6 +122,7 @@ a {
     transition: .5s;
     border-radius: 7px;
     margin: 6px;
+    margin-left: 10px;
 }
 
 .catalog-item__button:hover {
@@ -138,6 +148,7 @@ a {
     padding-bottom: 20px;
 }
 
+/* 
 .rating__body {
     position: relative;
 }
@@ -179,11 +190,5 @@ a {
     flex: 0 0 20%;
     height: 100%;
     opacity: 0;
-}
-
-.rating__value {
-    font-size: 50%;
-    line-height: 1;
-    padding: 0px 0px 0px 10px;
-}
+}*/
 </style>

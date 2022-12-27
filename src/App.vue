@@ -7,6 +7,7 @@
 </template>
 
 <script>
+
 import MainWrapper from './components/MainWrapper.vue'
 
 export default {

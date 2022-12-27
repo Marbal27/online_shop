@@ -5,6 +5,7 @@
             <a class="catalog-item__name">{{ product.title }}</a>
             <a>{{ product.category }}</a>
             <h2 style="font-family: 'Oswald'; ">{{ product.price * 68 }}руб</h2>
+            <button class="catalog-item__button">Add to cart</button>
             <div class="rating">
                 <div class="rating__body">
                     <div class="rating__active"></div>
@@ -47,6 +48,10 @@ export default {
 </script>
 
 <style>
+img {
+    border-radius: 7px;
+}
+
 .catalog-item {
     /* flex-basis: 20%; */
     width: 163px;
@@ -55,6 +60,10 @@ export default {
     border-radius: 10px;
     margin-bottom: 37px;
 
+}
+
+.catalog-item:hover {
+    background: #ffd4d4;
 }
 
 .catalog-item__name {
@@ -80,6 +89,36 @@ a {
     line-height: 24px;
     padding-top: 15px;
     color: #000000;
+}
+
+.catalog-item__button {
+    width: 100px;
+    height: 35px;
+    text-align: center;
+    display: block;
+    font-family: 'Oswald';
+    font-weight: 300;
+    font-size: 16px;
+    border: #ffffff 3px solid;
+    color: #ffffff;
+    background-color: #e087a4;
+    transition: .5s;
+    border-radius: 7px;
+    margin: 6px;
+}
+
+.catalog-item__button:hover {
+    top: 5px;
+    transition: .5s;
+    color: #b95454;
+    border: #b95454 3px solid;
+
+}
+
+.catalog-item__button:active {
+    color: rgb(0, 0, 0);
+    border: #000000 3px solid;
+    transition: .07s;
 }
 
 .rating {

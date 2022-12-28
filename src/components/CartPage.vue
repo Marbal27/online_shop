@@ -1,6 +1,6 @@
 <template>
     <div class="cart-page">
-        <h1>hello</h1>
+        <h1>Корзина</h1>
         <cart-item></cart-item>
     </div>
 </template>

@@ -2,7 +2,7 @@
     <div class="main-wrapper">
         <div class="header">
             <div class="header-left">
-                <img src="@/assets/логотип.png"> 
+                <img src="@/assets/логотип.png">
                 <div class="header-left__text1">Покупки в радость</div>
                 <div class="header-left__category">
                     <div class="header-left__text2">Выберите категорию</div>
@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-
+    <select-page></select-page>
     <catalog-page></catalog-page>
     <cart-page></cart-page>
 
@@ -23,18 +23,23 @@
 <script>
 import CatalogPage from './CatalogPage.vue'
 import CartPage from './CartPage.vue'
+import SelectPage from './SelectPage.vue'
 
 export default {
     name: 'MainWrapper',
     components: {
         CatalogPage,
         CartPage,
+        SelectPage,
     },
-   
+
     data() {
         return {
 
         }
+    },
+    computed: {
+        
     }
 }
 </script>

@@ -1,5 +1,32 @@
 import { createApp } from 'vue'
+// import Vue from 'vue'
 import App from './App.vue'
+// import Vuex from 'vuex'
+// // import axios from 'axios'
+
+// Vue.use(Vuex);
+
+// let store = new Vuex.Store( {
+//     state:{
+//         products: [],
+//         cart: []
+//     },
+//     mutations: {
+//         set_products: (state, products) => {
+//             state.products = products;
+//         }
+//     },
+//     getters: {
+//         products(state) {
+//             return state.products;
+//         },
+//         cart(state) {
+//             return state.cart;
+//         }
+//     }
+// });
+
+// export default store;
 
 createApp(App).mount('#app')
 

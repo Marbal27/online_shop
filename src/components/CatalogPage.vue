@@ -1,6 +1,8 @@
 <template>
     <div class="catalog-page">
         <p>Каталог товаров:</p>
+        
+
         <div class="catalog-page__list">
             
             <catalog-item></catalog-item>

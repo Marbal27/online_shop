@@ -1,15 +1,14 @@
 <template>
     <div class="catalog-page">
         <p>Каталог товаров:</p>
-        
 
         <div class="catalog-page__list">
-            
+
             <catalog-item></catalog-item>
         </div>
     </div>
 
-    
+
 </template>
 
 <script>
@@ -19,7 +18,17 @@ export default {
     name: "CatalogPage",
     components: {
         CatalogItem,
-    }
+    },
+    data() {
+        return {
+           
+        }
+
+    },
+    
+
+
+    
 }
 </script>
 

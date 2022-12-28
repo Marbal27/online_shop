@@ -6,8 +6,8 @@
                 <div class="header-left__text1">Покупки в радость</div>
                 <div class="header-left__category">
                     <div class="header-left__text2">Выберите категорию</div>
-                    <select-page :options="options" v-model="category"
-                    @select="optionSelect" :selected="selected"></select-page>
+                    <!-- <select-page :options="options" v-model="category"
+                    @select="optionSelect" :selected="selected"></select-page> -->
                 </div>
             </div>
             <div class="header-ridth">
@@ -16,29 +16,27 @@
         </div>
     </div>
 
-    <!-- <p>{{ selected }}</p> -->
-
     <catalog-page></catalog-page>
-    <cart-page></cart-page>
-
+    <paginate-page :totalPages="2" :perPage="10" :currentPage="currentPage"
+        @pagechanged="onPageChange"></paginate-page>
 
 </template>
 
 <script>
 import CatalogPage from './CatalogPage.vue'
-import CartPage from './CartPage.vue'
-import SelectPage from './SelectPage.vue'
+// import SelectPage from './SelectPage.vue'
+import PaginatePage from './PaginationPage.vue'
 
 export default {
     name: 'MainWrapper',
     components: {
         CatalogPage,
-        CartPage,
-        SelectPage,
+        PaginatePage,
     },
 
     data() {
         return {
+            currentPage: 1,
             category: "",
             options: [
                 { name: "Все", value: 1 },
@@ -52,7 +50,10 @@ export default {
         }
     },
     methods: {
-       
+        onPageChange(page) {
+      console.log(page)
+      this.currentPage = page;
+    },
         optionSelect(category) {
             this.selected = category.name
         }

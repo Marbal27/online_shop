@@ -33,17 +33,11 @@ export default {
         selectOption(option) {
             this.$emit('select', option)
             this.areOptionsVisible = false
-        },
-        hideSelect() {
-            this.areOptionsVisible = false
         }
+        
     },
-    mounted() {
-        document.addEventListener('click', this.hideSelect.bind(this), true)
-    },
-    beforeDestroy() {
-        document.removeEventListener('click', this.hideSelect)
-    },
+    
+    
 }
 </script>
 

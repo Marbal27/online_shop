@@ -1,6 +1,6 @@
 <template>
     <div class="category-catalog">
-        <div class="category">
+        <div class="category" style="font-family: 'Oswald'; margin-bottom: 25px;">
             <input type="radio" v-model="category" @click="(this.category = 'jewelery'), getDataOption()"
                 id="jewelery" />
             <label for="jewelery">Украшения</label>
@@ -75,6 +75,8 @@ export default {
 </script>
 
 <style>
+
+
 .category-catalog {
     display: flex;
     flex-direction: column;

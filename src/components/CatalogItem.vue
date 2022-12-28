@@ -7,10 +7,10 @@
             <input type="radio" v-model="category" @click="(this.category = 'electronics'), getDataOption()"
                 id="electronics" />
             <label for="electronics">Электроника</label>
-            <input type="radio" v-model="category" @click='(this.category = "men's clothing"), getCategory()'
+            <input type="radio" v-model="category" @click='(this.category = "men's clothing"), getDataOption()'
                 id="men's clothing" />
             <label for="men's clothing">Мужская одежда</label>
-            <input type="radio" v-model="category" @click='(this.category = "women's clothing"), getCategory()'
+            <input type="radio" v-model="category" @click='(this.category = "women's clothing"), getDataOption()'
                 id="women's clothing" />
             <label for="women's clothing">Женская одежда</label>
         </div>

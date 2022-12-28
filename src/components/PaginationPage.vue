@@ -1,7 +1,7 @@
 <template>
-    
+        
     <div class="pagination-page">
-        <ul class="pagination">
+        <!-- <ul class="pagination">
             <li class="pagination-item">
                 <button type="button" @click="onClickPreviousPage" :disabled="isInFirstPage">
                     назад
@@ -20,96 +20,97 @@
                     вперёд
                 </button>
             </li>
-        </ul>
+        </ul> -->
     </div>
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-        }
-    },
-    props: {
-        maxVisibleButtons: {
-            type: Number,
-            required: false,
-            default: 2
-        },
-        totalPages: {
-            type: Number,
-            required: true
-        },
-        perPage: {
-            type: Number,
-            required: true
-        },
-        currentPage: {
-            type: Number,
-            required: true
-        }
-    },
-    computed: {
-        isInFirstPage() {
-            return this.currentPage === 1;
-        },
-        isInLastPage() {
-            return this.currentPage === this.totalPages;
-        },
-        startPage() {
-            if (this.currentPage === 1) {
-                return 1;
-            }
 
-            if (this.currentPage === this.totalPages) {
-                return this.totalPages - this.maxVisibleButtons;
-            }
+// export default {
+//     data() {
+//         return {
+//         }
+//     },
+//     props: {
+//         maxVisibleButtons: {
+//             type: Number,
+//             required: false,
+//             default: 2
+//         },
+//         totalPages: {
+//             type: Number,
+//             required: true
+//         },
+//         perPage: {
+//             type: Number,
+//             required: true
+//         },
+//         currentPage: {
+//             type: Number,
+//             required: true
+//         }
+//     },
+//     computed: {
+//         isInFirstPage() {
+//             return this.currentPage === 1;
+//         },
+//         isInLastPage() {
+//             return this.currentPage === this.totalPages;
+//         },
+//         startPage() {
+//             if (this.currentPage === 1) {
+//                 return 1;
+//             }
 
-            return this.currentPage - 1;
-        },
-        pages() {
-            const range = [];
+//             if (this.currentPage === this.totalPages) {
+//                 return this.totalPages - this.maxVisibleButtons;
+//             }
 
-            for (
-                let i = this.startPage;
-                i <= Math.min(this.startPage + this.maxVisibleButtons - 1, this.totalPages);
-                i++
-            ) {
-                range.push({
-                    name: i,
-                    isDisabled: i === this.currentPage
-                });
-            }
+//             return this.currentPage - 1;
+//         },
+//         pages() {
+//             const range = [];
 
-            return range;
-        }
-    },
-    methods: {
-        onClickFirstPage() {
-            this.$emit('pagechanged', 1);
-        },
-        onClickPreviousPage() {
-            this.$emit('pagechanged', this.currentPage - 1);
-        },
-        onClickPage(page) {
-            this.$emit('pagechanged', page);
-        },
-        onClickNextPage() {
-            this.$emit('pagechanged', this.currentPage + 1);
-        },
-        onClickLastPage() {
-            this.$emit('pagechanged', this.totalPages);
-        },
-        isPageActive(page) {
-            return this.currentPage === page;
-        }
-    }
-};
+//             for (
+//                 let i = this.startPage;
+//                 i <= Math.min(this.startPage + this.maxVisibleButtons - 1, this.totalPages);
+//                 i++
+//             ) {
+//                 range.push({
+//                     name: i,
+//                     isDisabled: i === this.currentPage
+//                 });
+//             }
+
+//             return range;
+//         }
+//     },
+//     methods: {
+//         onClickFirstPage() {
+//             this.$emit('pagechanged', 1);
+//         },
+//         onClickPreviousPage() {
+//             this.$emit('pagechanged', this.currentPage - 1);
+//         },
+//         onClickPage(page) {
+//             this.$emit('pagechanged', page);
+//         },
+//         onClickNextPage() {
+//             this.$emit('pagechanged', this.currentPage + 1);
+//         },
+//         onClickLastPage() {
+//             this.$emit('pagechanged', this.totalPages);
+//         },
+//         isPageActive(page) {
+//             return this.currentPage === page;
+//         }
+//     }
+// };
 
 </script>
 
 <style>
-.pagination {
+/* .pagination {
     list-style-type: none;
 }
 
@@ -120,5 +121,5 @@ export default {
 .active {
     background-color: #4AAE9B;
     color: #ffffff;
-}
+} */
 </style>

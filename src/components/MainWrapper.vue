@@ -37,6 +37,7 @@ export default {
     data() {
         return {
             currentPage: 1,
+            totalPages: 2,
             category: "",
             options: [
                 { name: "Все", value: 1 },
@@ -50,10 +51,10 @@ export default {
         }
     },
     methods: {
-        onPageChange(page) {
-      console.log(page)
-      this.currentPage = page;
-    },
+    //     onPageChange(page) {
+    //   console.log(page)
+    //   this.currentPage = page;
+    // },
         optionSelect(category) {
             this.selected = category.name
         }

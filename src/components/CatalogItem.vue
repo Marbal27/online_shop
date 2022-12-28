@@ -1,32 +1,44 @@
 <template>
-    <div class="category">
-        <input type="radio" v-model="category" @click="(this.category = 'jewelery'), getDataOption()" />
-        <input type="radio" v-model="category" @click="(this.category = 'electronics'), getDataOption()" />
-        <!-- <!— <input type="radio" v-model=category @click="this.category = men's clothing', getCategory()" />
-        <input type="radio" v-model=category @click="this.category = women's clothing, getCategory()" /> —> -->
-    </div>
-    
+    <div class="category-catalog">
+        <div class="category">
+            <input type="radio" v-model="category" @click="(this.category = 'jewelery'), getDataOption()"
+                id="jewelery" />
+            <label for="jewelery">Украшения</label>
+            <input type="radio" v-model="category" @click="(this.category = 'electronics'), getDataOption()"
+                id="electronics" />
+            <label for="electronics">Электроника</label>
+            <!-- <input type="radio" v-model="category" @click='(this.category = "men's clothing"), getCategory()' id= "men's clothing"/>
+        <label for="men's clothing">Мужская одежда</label>
+        <input type="radio" v-model="category" @click='(this.category = "women's clothing"), getCategory()' id="women's clothing"/> 
+        <label for="women's clothing">Женская одежда</label> -->
+        </div>
+        <div class="catalog-title">
+            <div class="catalog-item" v-for="(product, index) in products" :key="index">
+                <div class="catalog-item__card">
+                    <img :src="product.image" height="110" width="110">
+                    <a class="catalog-item__name">{{ product.title }}</a>
+                    <a>{{ product.category }}</a>
+                    <h2 style="font-family:'Oswald';">{{ product.price * 68 }}руб</h2>
+                    <button class="catalog-item__button">Добавить в корзину</button>
+                    <div class="rating">
 
-    <div class="catalog-item" v-for="(product, index) in products" :key="index">
-        <div class="catalog-item__card">
-            <img :src="product.image" height="110" width="110">
-            <a class="catalog-item__name">{{ product.title }}</a>
-            <a>{{ product.category }}</a>
-            <h2 style="font-family:'Oswald';">{{ product.price * 68 }}руб</h2>
-            <button class="catalog-item__button">Добавить в корзину</button>
-            <div class="rating">
+                        <star-rating :rating="product.rating.rate" class="rating__star"
+                            v-bind:star-size="20"></star-rating>
 
-                <star-rating :rating="product.rating.rate" class="rating__star" v-bind:star-size="20"></star-rating>
+                    </div>
+
+                </div>
 
             </div>
-
         </div>
 
     </div>
+
 </template>
 
 <script>
 import StarRating from 'vue-star-rating';
+
 export default {
     name: "CatalogItem",
     components: {
@@ -47,9 +59,9 @@ export default {
     methods: {
         getDataOption() {
             this.products = [];
-                fetch("https://fakestoreapi.com/products/category/" + this.category)
-                    .then((res) => res.json())
-                    .then((json) => (this.data = json));
+            fetch("https://fakestoreapi.com/products/category/" + this.category)
+                .then((res) => res.json())
+                .then((json) => (this.products = json));
         },
     },
 
@@ -63,6 +75,18 @@ export default {
 </script>
 
 <style>
+.category-catalog {
+    display: flex;
+    flex-direction: column;
+}
+
+.catalog-title {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .rating__star {
     font-size: 50%;
 
@@ -78,7 +102,6 @@ img {
 }
 
 .catalog-item {
-
     width: 163px;
     height: 100%;
     background: #fff4f2;

@@ -7,10 +7,12 @@
             <input type="radio" v-model="category" @click="(this.category = 'electronics'), getDataOption()"
                 id="electronics" />
             <label for="electronics">Электроника</label>
-            <!-- <input type="radio" v-model="category" @click='(this.category = "men's clothing"), getCategory()' id= "men's clothing"/>
-        <label for="men's clothing">Мужская одежда</label>
-        <input type="radio" v-model="category" @click='(this.category = "women's clothing"), getCategory()' id="women's clothing"/> 
-        <label for="women's clothing">Женская одежда</label> -->
+            <input type="radio" v-model="category" @click='(this.category = "men's clothing"), getCategory()'
+                id="men's clothing" />
+            <label for="men's clothing">Мужская одежда</label>
+            <input type="radio" v-model="category" @click='(this.category = "women's clothing"), getCategory()'
+                id="women's clothing" />
+            <label for="women's clothing">Женская одежда</label>
         </div>
         <div class="catalog-title">
             <div class="catalog-item" v-for="(product, index) in products" :key="index">
@@ -75,8 +77,6 @@ export default {
 </script>
 
 <style>
-
-
 .category-catalog {
     display: flex;
     flex-direction: column;

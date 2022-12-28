@@ -6,7 +6,6 @@
                 <div class="header-left__text1">Покупки в радость</div>
                 <div class="header-left__category">
                     <div class="header-left__text2">Выберите категорию</div>
-                    <!-- <select-page :options="categories" @select="optionSelect" :selected="selected"></select-page> -->
                     <select-page :options="options" v-model="category"
                     @select="optionSelect" :selected="selected"></select-page>
                 </div>
@@ -41,7 +40,6 @@ export default {
     data() {
         return {
             category: "",
-            // data: [],
             options: [
                 { name: "Все", value: 1 },
                 { name: "men's clothing", value: 2 },
@@ -54,12 +52,7 @@ export default {
         }
     },
     methods: {
-        // getDataOption() {
-        //     this.data = [];
-        //     fetch("https://fakestoreapi.com/products/category/" + this.category.name)
-        //         .then(res => res.json())
-        //         .then(json => {this.data = json});
-        // }
+       
         optionSelect(category) {
             this.selected = category.name
         }

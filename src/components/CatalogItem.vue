@@ -1,4 +1,12 @@
 <template>
+    <div class="category">
+        <input type="radio" v-model="category" @click="(this.category = 'jewelery'), getDataOption()" />
+        <input type="radio" v-model="category" @click="(this.category = 'electronics'), getDataOption()" />
+        <!-- <!— <input type="radio" v-model=category @click="this.category = men's clothing', getCategory()" />
+        <input type="radio" v-model=category @click="this.category = women's clothing, getCategory()" /> —> -->
+    </div>
+    
+
     <div class="catalog-item" v-for="(product, index) in products" :key="index">
         <div class="catalog-item__card">
             <img :src="product.image" height="110" width="110">
@@ -7,9 +15,9 @@
             <h2 style="font-family:'Oswald';">{{ product.price * 68 }}руб</h2>
             <button class="catalog-item__button">Добавить в корзину</button>
             <div class="rating">
-                
-                <star-rating :rating="product.rating.rate" class="rating__star" v-bind:star-size="20" ></star-rating>
-                
+
+                <star-rating :rating="product.rating.rate" class="rating__star" v-bind:star-size="20"></star-rating>
+
             </div>
 
         </div>
@@ -25,7 +33,7 @@ export default {
         StarRating,
     },
     props: {
-        
+
 
     },
 
@@ -33,9 +41,18 @@ export default {
         return {
             model: false,
             products: [],
-
+            category: ''
         }
     },
+    methods: {
+        getDataOption() {
+            this.products = [];
+                fetch("https://fakestoreapi.com/products/category/" + this.category)
+                    .then((res) => res.json())
+                    .then((json) => (this.data = json));
+        },
+    },
+
     mounted() {
         fetch('https://fakestoreapi.com/products')
             .then(res => res.json())
@@ -48,20 +65,20 @@ export default {
 <style>
 .rating__star {
     font-size: 50%;
-    
+
 }
 
 .rating__value {
     font-size: 50%;
-    
-} 
+
+}
 
 img {
     border-radius: 7px;
 }
 
 .catalog-item {
-    
+
     width: 163px;
     height: 100%;
     background: #fff4f2;
@@ -138,6 +155,4 @@ a {
     justify-content: center;
     padding-bottom: 20px;
 }
-
-
 </style>

@@ -1,16 +1,19 @@
 <template>
     <div class="category-catalog">
         <div class="category" style="font-family: 'Oswald'; margin-bottom: 25px;">
+            <!-- <input type="radio" v-model="category" @click="(this.category ), getDataOption()"
+                id="all" />
+            <label for="all">Все</label> -->
             <input type="radio" v-model="category" @click="(this.category = 'jewelery'), getDataOption()"
                 id="jewelery" />
             <label for="jewelery">Украшения</label>
             <input type="radio" v-model="category" @click="(this.category = 'electronics'), getDataOption()"
                 id="electronics" />
             <label for="electronics">Электроника</label>
-            <input type="radio" v-model="category" @click='(this.category = "men's clothing"), getDataOption()'
+            <input type="radio" v-model="category" @click='(this.category = men), getDataOption()'
                 id="men's clothing" />
             <label for="men's clothing">Мужская одежда</label>
-            <input type="radio" v-model="category" @click='(this.category = "women's clothing"), getDataOption()'
+            <input type="radio" v-model="category" @click='(this.category = women), getDataOption()'
                 id="women's clothing" />
             <label for="women's clothing">Женская одежда</label>
         </div>
@@ -47,7 +50,7 @@ export default {
         StarRating,
     },
     props: {
-
+        
 
     },
 
@@ -55,7 +58,9 @@ export default {
         return {
             model: false,
             products: [],
-            category: ''
+            category: '',
+            men: "men's clothing",
+            women: "women's clothing"
         }
     },
     methods: {

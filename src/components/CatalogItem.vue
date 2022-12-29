@@ -38,16 +38,19 @@
         </div>
 
     </div>
+    <paginate-page ></paginate-page>
 
 </template>
 
 <script>
 import StarRating from 'vue-star-rating';
+import PaginatePage from "vuejs-paginate-next";
 
 export default {
     name: "CatalogItem",
     components: {
         StarRating,
+        PaginatePage
     },
     props: {
         
@@ -60,7 +63,7 @@ export default {
             products: [],
             category: '',
             men: "men's clothing",
-            women: "women's clothing"
+            women: "women's clothing",
         }
     },
     methods: {
@@ -92,6 +95,7 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+
 }
 
 .rating__star {

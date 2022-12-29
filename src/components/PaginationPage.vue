@@ -1,6 +1,11 @@
 <template>
-        
     <div class="pagination-page">
+        <paginate v-model="page" :page-count="pagesCount" :page-range="3" :margin-pages="2" :click-handler="clickCallback"
+            :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'" :page-class="'page-item'">
+        </paginate>
+
+
+
         <!-- <ul class="pagination">
             <li class="pagination-item">
                 <button type="button" @click="onClickPreviousPage" :disabled="isInFirstPage">
@@ -26,86 +31,112 @@
 
 <script>
 
-// export default {
-//     data() {
-//         return {
-//         }
-//     },
-//     props: {
-//         maxVisibleButtons: {
-//             type: Number,
-//             required: false,
-//             default: 2
-//         },
-//         totalPages: {
-//             type: Number,
-//             required: true
-//         },
-//         perPage: {
-//             type: Number,
-//             required: true
-//         },
-//         currentPage: {
-//             type: Number,
-//             required: true
-//         }
-//     },
-//     computed: {
-//         isInFirstPage() {
-//             return this.currentPage === 1;
-//         },
-//         isInLastPage() {
-//             return this.currentPage === this.totalPages;
-//         },
-//         startPage() {
-//             if (this.currentPage === 1) {
-//                 return 1;
-//             }
+export default {
+    data() {
+        return {
+            pagination_offset: 0,
+            pagination_per_page: 10,
+            page: 1,
+            count_list: [],
+        }
+    },
+    computed: {
+        pagesCount() {
+            return Math.ceil(this.products.length / this.pagination_per_page)
+        }
+    },
+    methods: {
+        clickCallback(page_num) {
+            this.page = page_num
+            this.pagination_offset = (this.pagination_per_page * page_num) - this.pagination_per_page
+            if (page_num === 1) {
+                this.$router.push(`/`)
+            } 
+            else {
+                this.$router.push(`/?page=${page_num}`)
+            }
 
-//             if (this.currentPage === this.totalPages) {
-//                 return this.totalPages - this.maxVisibleButtons;
-//             }
+            this.count_list = this.products.splace(this.pagination_offset, this.pagination_per_page)
+            window.scrollTo(0,0)
+            
+        }
+    }
+    // props: {
+    //     maxVisibleButtons: {
+    //         type: Number,
+    //         required: false,
+    //         default: 2
+    //     },
+    //     totalPages: {
+    //         type: Number,
+    //         required: true
+    //     },
+    //     perPage: {
+    //         type: Number,
+    //         required: true
+    //     },
+    //     currentPage: {
+    //         type: Number,
+    //         required: true,
+    //         default: 1,
+    //     }
+    // },
+    // computed: {
+    //     isInFirstPage() {
+    //         return this.currentPage === 1;
+    //     },
+    //     isInLastPage() {
+    //         return this.currentPage === this.totalPages;
+    //     },
+    //     startPage() {
+    //         if (this.currentPage === 1) {
+    //             return 1;
+    //         }
 
-//             return this.currentPage - 1;
-//         },
-//         pages() {
-//             const range = [];
+    //         if (this.currentPage === this.totalPages) {
+    //             return this.totalPages - this.maxVisibleButtons;
+    //         }
 
-//             for (
-//                 let i = this.startPage;
-//                 i <= Math.min(this.startPage + this.maxVisibleButtons - 1, this.totalPages);
-//                 i++
-//             ) {
-//                 range.push({
-//                     name: i,
-//                     isDisabled: i === this.currentPage
-//                 });
-//             }
+    //         return this.currentPage - 1;
+    //     },
+    //     pages() {
+    //         const range = [];
 
-//             return range;
-//         }
-//     },
-//     methods: {
-//         onClickFirstPage() {
-//             this.$emit('pagechanged', 1);
-//         },
-//         onClickPreviousPage() {
-//             this.$emit('pagechanged', this.currentPage - 1);
-//         },
-//         onClickPage(page) {
-//             this.$emit('pagechanged', page);
-//         },
-//         onClickNextPage() {
-//             this.$emit('pagechanged', this.currentPage + 1);
-//         },
-//         onClickLastPage() {
-//             this.$emit('pagechanged', this.totalPages);
-//         },
-//         isPageActive(page) {
-//             return this.currentPage === page;
-//         }
-//     }
-// };
+    //         for (
+    //             let i = this.startPage;
+    //             i <= Math.min(this.startPage + this.maxVisibleButtons - 1, this.totalPages);
+    //             i++
+    //         ) {
+    //             range.push({
+    //                 name: i,
+    //                 isDisabled: i === this.currentPage
+    //             });
+    //         }
+
+    //         return range;
+    //     }
+    // },
+    // methods: {
+    //     onClickFirstPage() {
+    //         this.$emit('pagechanged', 1);
+    //     },
+    //     onClickPreviousPage() {
+    //         this.$emit('pagechanged', this.currentPage - 1);
+    //     },
+    //     onClickPage(page) {
+    //         this.$emit('pagechanged', page);
+    //     },
+    //     onClickNextPage() {
+    //         this.$emit('pagechanged', this.currentPage + 1);
+    //     },
+    //     onClickLastPage() {
+    //         this.$emit('pagechanged', this.totalPages);
+    //     },
+    //     isPageActive(page) {
+    //         return this.currentPage === page;
+    //     }
+    // }
+};
 
 </script>
 
@@ -119,7 +150,7 @@
 }
 
 .active {
-    background-color: #4AAE9B;
+    background-color: #f28d8d;
     color: #ffffff;
 } */
 </style>

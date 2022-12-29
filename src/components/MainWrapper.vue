@@ -5,7 +5,6 @@
                 <img src="@/assets/логотип.png">
                 <div class="header-left__text1">Покупки в радость</div>
                 <div class="header-left__category">
-                    <div class="header-left__text2">Выберите категорию</div>
                     <!-- <select-page :options="options" v-model="category"
                     @select="optionSelect" :selected="selected"></select-page> -->
                 </div>
@@ -17,27 +16,26 @@
     </div>
 
     <catalog-page></catalog-page>
-    <paginate-page :totalPages="2" :perPage="10" :currentPage="currentPage"
-        @pagechanged="onPageChange"></paginate-page>
+    <!-- <paginate-page :totalPages="2" :perPage="10" :currentPage="currentPage"
+        @pagechanged="onPageChange"></paginate-page> -->
 
 </template>
 
 <script>
 import CatalogPage from './CatalogPage.vue'
 // import SelectPage from './SelectPage.vue'
-import PaginatePage from './PaginationPage.vue'
+// import PaginatePage from './PaginationPage.vue'
 
 export default {
     name: 'MainWrapper',
     components: {
         CatalogPage,
-        PaginatePage,
+        // PaginatePage,
     },
 
     data() {
         return {
-            currentPage: 1,
-            totalPages: 2,
+            
             category: "",
             options: [
                 { name: "Все", value: 1 },

@@ -17,6 +17,7 @@
                 id="women's clothing" />
             <label for="women's clothing">Женская одежда</label>
         </div>
+    
         <div class="catalog-title">
             <div class="catalog-item" v-for="(product, index) in products" :key="index">
                 <div class="catalog-item__card">
@@ -26,10 +27,8 @@
                     <h2 style="font-family:'Oswald';">{{ product.price * 68 }}руб</h2>
                     <button class="catalog-item__button">Добавить в корзину</button>
                     <div class="rating">
-
                         <star-rating :rating="product.rating.rate" class="rating__star"
                             v-bind:star-size="20"></star-rating>
-
                     </div>
 
                 </div>
@@ -37,20 +36,32 @@
             </div>
         </div>
 
+
+        <ul class="pagination">
+            <li class="pagination-item">
+                <button type="button" @click="getNewPageOne()" >
+                    1
+                </button>
+            </li>
+
+
+            <li class="pagination-item">
+                <button type="button" @click="getNewPageTwo()" >
+                    2
+                </button>
+            </li>
+        </ul>
     </div>
-    <paginate-page ></paginate-page>
 
 </template>
 
 <script>
 import StarRating from 'vue-star-rating';
-import PaginatePage from "vuejs-paginate-next";
 
 export default {
     name: "CatalogItem",
     components: {
         StarRating,
-        PaginatePage
     },
     props: {
         
@@ -61,11 +72,19 @@ export default {
         return {
             model: false,
             products: [],
+            page_one: [],
+            page_two: [],
+
             category: '',
             men: "men's clothing",
             women: "women's clothing",
         }
     },
+    // computed: {
+    //     getNewMas() {
+
+    //     }
+    // },
     methods: {
         getDataOption() {
             this.products = [];
@@ -73,6 +92,16 @@ export default {
                 .then((res) => res.json())
                 .then((json) => (this.products = json));
         },
+        getNewPageOne() {
+            this.page_one = [],
+            this.page_one = this.products.splice(0,10)
+            console.log(this.page_one)
+        },
+        getNewPageTwo() {
+            this.page_two = [],
+            this.page_two = this.products.splice(10,10)
+            console.log(this.page_two)
+        }
     },
 
     mounted() {
@@ -80,6 +109,7 @@ export default {
             .then(res => res.json())
             .then(json => { this.products = json })
     },
+    
 
 }
 </script>
@@ -189,4 +219,19 @@ a {
     justify-content: center;
     padding-bottom: 20px;
 }
+
+.pagination {
+   display: inline-block;
+    justify-content: center;
+}
+
+.pagination-item {
+    
+
+}
+
+.active {
+    background-color: #f28d8d;
+    color: #ffffff;
+} 
 </style>

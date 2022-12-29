@@ -1,8 +1,6 @@
 <template>
     <div class="pagination-page">
-        <paginate v-model="page" :page-count="pagesCount" :page-range="3" :margin-pages="2" :click-handler="clickCallback"
-            :prev-text="'Prev'" :next-text="'Next'" :container-class="'pagination'" :page-class="'page-item'">
-        </paginate>
+        
 
 
 
@@ -40,11 +38,7 @@ export default {
             count_list: [],
         }
     },
-    computed: {
-        pagesCount() {
-            return Math.ceil(this.products.length / this.pagination_per_page)
-        }
-    },
+    
     methods: {
         clickCallback(page_num) {
             this.page = page_num

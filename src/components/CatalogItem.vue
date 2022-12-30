@@ -19,7 +19,7 @@
 
         <div class="catalog-title">
             <div class="catalog-item" v-for="(product, index) in products" :key="index">
-                <div class="catalog-item__card" @click="(this.window = true),
+                <div class="catalog-item__card" @click="(this.window==true? this.window=false:this.window=true),
     (this.price = card.price),
     (this.title = card.title),
     (this.description = card.description),
@@ -40,8 +40,8 @@
 
             </div>
         </div>
-
-        <window v-model="window">
+      
+        <div :class="this.window">
             <div class="modal-mask">
                 <div class="modal-wrapper">
                     <div class="modal-container">
@@ -61,16 +61,14 @@
                         <div class="modal-footer">
                             <slot name="footer">
                                 default footer
-                                <button class="modal-default-button" @click="$emit('close')">
-                                    OK
-                                </button>
+                                <button class="modal-default-button" @click="this.window=false">OK</button>
                             </slot>
                         </div>
                     </div>
                 </div>
             </div>
-        </window>
-
+        </div>
+        
 
         <div class="pagination">
             <div class="pagination-item">
@@ -111,9 +109,10 @@ export default {
             category: '',
             men: "men's clothing",
             women: "women's clothing",
-            window: false
+            window: false,
         }
     },
+
 
     methods: {
         getDataOption() {
@@ -128,21 +127,21 @@ export default {
                 .then((res) => res.json())
                 .then((json) => (this.products = json));
         },
-        getNewPage() {
-            if (this.direction == 1) {
-                for (let i = this.id; i < i + 10; i++) {
-                    this.page_one[i] = this.products[i + 10]
-                }
-            }
-            else if (this.direction == -1) {
-                if (this.products[0].id != 1) {
-                    for (let i = this.id; i < i - 10; i--) {
-                        this.page_one[i] = this.products[i - 10]
-                    }
-                }
+        // getNewPage() {
+        //     if (this.direction == 1) {
+        //         for (let i = this.id; i < i + 10; i++) {
+        //             this.page_one[i] = this.products[i + 10]
+        //         }
+        //     }
+        //     else if (this.direction == -1) {
+        //         if (this.products[0].id != 1) {
+        //             for (let i = this.id; i < i - 10; i--) {
+        //                 this.page_one[i] = this.products[i - 10]
+        //             }
+        //         }
 
-            }
-        },
+        //     }
+        // },
 
     },
 
@@ -157,6 +156,7 @@ export default {
 </script>
 
 <style>
+
 .category-catalog {
     display: flex;
     flex-direction: column;
@@ -275,58 +275,57 @@ a {
 }
 
 .modal-mask {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: table;
-  transition: opacity 0.3s ease;
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: table;
+    transition: opacity 0.3s ease;
 }
 
 .modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .modal-container {
-  width: 300px;
-  margin: 0px auto;
-  padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-  transition: all 0.3s ease;
-  font-family: Helvetica, Arial, sans-serif;
+    width: 300px;
+    margin: 0px auto;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+    transition: all 0.3s ease;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 .modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
+    margin-top: 0;
+    color: #42b983;
 }
 
 .modal-body {
-  margin: 20px 0;
+    margin: 20px 0;
 }
 
 .modal-default-button {
-  float: right;
+    float: right;
 }
 
 .modal-enter {
-  opacity: 0;
+    opacity: 0;
 }
 
 .modal-leave-active {
-  opacity: 0;
+    opacity: 0;
 }
 
 .modal-enter .modal-container,
 .modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }
-
 </style>

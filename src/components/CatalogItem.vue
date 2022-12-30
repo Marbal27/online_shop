@@ -22,7 +22,7 @@
                 <div class="catalog-item__card" @click="(windowOpen = true), (this.img =  product.image),
     (this.price =  product.price),
     (this.title =  product.title),
-    (this.category_ = product.category),
+    (this.category = product.category),
     (this.description =  product.description),
     (this.rating_rate =  product.rating.rate),
     (this.rating_count =  product.rating.count)">
@@ -85,6 +85,12 @@ export default {
             men: "men's clothing",
             women: "women's clothing",
             windowOpen: false,
+
+            img: '',
+            price: 0,
+            title: '',
+            description: '', 
+            
         }
     },
 

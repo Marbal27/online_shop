@@ -2,24 +2,24 @@
     <div class="category-catalog">
         <div class="category" style="font-family: 'Oswald'; margin-bottom: 25px;">
             <input type="radio" @click="getDataOptionALL()" id="all" />
-            <label for="all">Все</label>
+            <label for="all" @click="getDataOptionALL()">Все</label>
             <input type="radio" v-model="category" @click="(this.category = 'jewelery'), getDataOption()"
                 id="jewelery" />
-            <label for="jewelery">Украшения</label>
+            <label for="jewelery" @click="(this.category = 'jewelery'), getDataOption()">Украшения</label>
             <input type="radio" v-model="category" @click="(this.category = 'electronics'), getDataOption()"
                 id="electronics" />
-            <label for="electronics">Электроника</label>
+            <label for="electronics" @click="(this.category = 'electronics'), getDataOption()">Электроника</label>
             <input type="radio" v-model="category" @click='(this.category = men), getDataOption()'
                 id="men's clothing" />
-            <label for="men's clothing">Мужская одежда</label>
+            <label for="men's clothing" @click='(this.category = men), getDataOption()'>Мужская одежда</label>
             <input type="radio" v-model="category" @click='(this.category = women), getDataOption()'
                 id="women's clothing" />
-            <label for="women's clothing">Женская одежда</label>
+            <label for="women's clothing" @click='(this.category = women), getDataOption()'>Женская одежда</label>
         </div>
 
         <div class="catalog-title">
             <div class="catalog-item" v-for="(product, index) in products" :key="index">
-                <div class="catalog-item__card" @click="(this.window == true ? this.window = false : this.window = true),
+                <div class="catalog-item__card" @click="(windowOpen = true),
     (this.price = card.price),
     (this.title = card.title),
     (this.description = card.description),
@@ -41,34 +41,7 @@
             </div>
         </div>
 
-        <div this.window>
-            <div class="modal-mask">
-                <div class="modal-wrapper">
-                    <div class="modal-container">
-
-                        <div class="modal-header">
-                            <slot name="header">
-                                default header
-                            </slot>
-                        </div>
-
-                        <div class="modal-body">
-                            <slot name="body">
-                                default body
-                            </slot>
-                        </div>
-
-                        <div class="modal-footer">
-                            <slot name="footer">
-                                default footer
-                                <button class="modal-default-button" @click="this.window = false">OK</button>
-                            </slot>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <model-window v-if="windowOpen" @close="windowOpen = false"></model-window>
 
         <div class="pagination">
             <div class="pagination-item">
@@ -87,11 +60,13 @@
 
 <script>
 import StarRating from 'vue-star-rating';
+import ModelWindow from './ModelWindow.vue'
 
 export default {
     name: "CatalogItem",
     components: {
         StarRating,
+        ModelWindow
     },
     props: {
 
@@ -109,7 +84,7 @@ export default {
             category: '',
             men: "men's clothing",
             women: "women's clothing",
-            window: false,
+            windowOpen: false,
         }
     },
 
@@ -273,58 +248,5 @@ a {
     color: #ffffff;
 }
 
-.modal-mask {
-    position: fixed;
-    z-index: 9998;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: table;
-    transition: opacity 0.3s ease;
-}
 
-.modal-wrapper {
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.modal-container {
-    width: 300px;
-    margin: 0px auto;
-    padding: 20px 30px;
-    background-color: #fff;
-    border-radius: 2px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-    transition: all 0.3s ease;
-    font-family: Helvetica, Arial, sans-serif;
-}
-
-.modal-header h3 {
-    margin-top: 0;
-    color: #42b983;
-}
-
-.modal-body {
-    margin: 20px 0;
-}
-
-.modal-default-button {
-    float: right;
-}
-
-.modal-enter {
-    opacity: 0;
-}
-
-.modal-leave-active {
-    opacity: 0;
-}
-
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-}
 </style>

@@ -19,7 +19,7 @@
 
         <div class="catalog-title">
             <div class="catalog-item" v-for="(product, index) in products" :key="index">
-                <div class="catalog-item__card" @click="(this.window==true? this.window=false:this.window=true),
+                <div class="catalog-item__card" @click="(this.window == true ? this.window = false : this.window = true),
     (this.price = card.price),
     (this.title = card.title),
     (this.description = card.description),
@@ -40,8 +40,8 @@
 
             </div>
         </div>
-      
-        <div :class="this.window">
+
+        <div this.window>
             <div class="modal-mask">
                 <div class="modal-wrapper">
                     <div class="modal-container">
@@ -61,14 +61,14 @@
                         <div class="modal-footer">
                             <slot name="footer">
                                 default footer
-                                <button class="modal-default-button" @click="this.window=false">OK</button>
+                                <button class="modal-default-button" @click="this.window = false">OK</button>
                             </slot>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
 
         <div class="pagination">
             <div class="pagination-item">
@@ -156,7 +156,6 @@ export default {
 </script>
 
 <style>
-
 .category-catalog {
     display: flex;
     flex-direction: column;

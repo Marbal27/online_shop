@@ -90,7 +90,8 @@ export default {
             price: 0,
             title: '',
             description: '', 
-            
+            rating_rate: 0,
+            rating_count: 0,
         }
     },
 

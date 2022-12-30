@@ -4,11 +4,11 @@
             <div class="modal-container">
                 <div class="modal-header" style="font-family:'Oswald';">
                     <div>{{ title }}</div>
-                    <div style="height: 200px; width: 200px">{{ img }}</div>
-                    <div>{{ description }}</div>
+                    <img :src="img" height="200" width="200">
+                    <div>Описание: {{ description }}</div>
                     <h2>{{ price * 68 }} руб</h2>
-                    <div>{{ rating_rate }}</div>
-                    <div>{{ rating_count }}</div>
+                    <div>Оценка: {{ rating_rate }}</div>
+                    <div>Количество оценок: {{ rating_count }}</div>
                 </div>
                 <div class="modal-footer" @click="close">
                     <button class="modal-footer__button">OK</button>

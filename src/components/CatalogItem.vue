@@ -19,13 +19,13 @@
 
         <div class="catalog-title">
             <div class="catalog-item" v-for="(product, index) in products" :key="index">
-                <div class="catalog-item__card" @click="(windowOpen = true), (this.img =  product.image),
-    (this.price =  product.price),
-    (this.title =  product.title),
+                <div class="catalog-item__card" @click="(this.windowOpen = true), (this.id = product.id), (this.img = product.image),
+    (this.price = product.price),
+    (this.title = product.title),
     (this.category = product.category),
-    (this.description =  product.description),
-    (this.rating_rate =  product.rating.rate),
-    (this.rating_count =  product.rating.count)">
+    (this.description = product.description),
+    (this.rating_rate = product.rating.rate),
+    (this.rating_count = product.rating.count)">
                     <img :src="product.image" height="110" width="110">
                     <a class="catalog-item__name">{{ product.title }}</a>
                     <a>{{ product.category }}</a>
@@ -41,7 +41,10 @@
             </div>
         </div>
 
-        <model-window v-if="windowOpen" @close="windowOpen = false"></model-window>
+        <model-window v-if="windowOpen" @close="windowOpen = false" :title="this.title" :img="this.img"
+            :description="this.description" :price="this.price" :rating_rate="this.rating_rate"
+            :rating_count="this.rating_count"></model-window>
+
 
         <div class="pagination">
             <div class="pagination-item">
@@ -89,7 +92,7 @@ export default {
             img: '',
             price: 0,
             title: '',
-            description: '', 
+            description: '',
             rating_rate: 0,
             rating_count: 0,
         }
@@ -97,6 +100,7 @@ export default {
 
 
     methods: {
+
         getDataOption() {
             this.products = [];
             fetch("https://fakestoreapi.com/products/category/" + this.category)
@@ -138,6 +142,30 @@ export default {
 </script>
 
 <style>
+.modal-wrapper {
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: table;
+
+}
+
+.modal-container {
+    max-width: 300px;
+    margin: 0px auto;
+    margin-top: 100px;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+    transition: all 0.3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
 .category-catalog {
     display: flex;
     flex-direction: column;
@@ -176,6 +204,7 @@ img {
 
 .catalog-item:hover {
     background: #ffd4d4;
+    cursor: pointer;
 }
 
 .catalog-item__name {
@@ -225,6 +254,7 @@ a {
     transition: .5s;
     color: #b95454;
     border: #b95454 3px solid;
+    cursor: pointer;
 
 }
 
@@ -254,6 +284,4 @@ a {
     background-color: #f28d8d;
     color: #ffffff;
 }
-
-
 </style>

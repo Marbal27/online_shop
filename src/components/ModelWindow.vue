@@ -24,7 +24,6 @@
 export default {
     data() {
         return {
-            // products: [],
         }
     },
     props: {
@@ -40,11 +39,6 @@ export default {
             this.$emit('close')
         }
     },
-    // mounted() {
-    //     fetch('https://fakestoreapi.com/products')
-    //         .then(res => res.json())
-    //         .then(json => { this.products = json })
-    // },
 }
 </script>
 

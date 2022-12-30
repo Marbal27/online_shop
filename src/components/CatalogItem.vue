@@ -19,13 +19,13 @@
 
         <div class="catalog-title">
             <div class="catalog-item" v-for="(product, index) in products" :key="index">
-                <div class="catalog-item__card" @click="(windowOpen = true),
-    (this.price = card.price),
-    (this.title = card.title),
-    (this.description = card.description),
-    (this.rating_rate = card.rating.rate),
-    (this.rating_count = card.rating.count),
-    (this.img = card.image)">
+                <div class="catalog-item__card" @click="(windowOpen = true), (this.img =  product.image),
+    (this.price =  product.price),
+    (this.title =  product.title),
+    (this.category_ = product.category),
+    (this.description =  product.description),
+    (this.rating_rate =  product.rating.rate),
+    (this.rating_count =  product.rating.count)">
                     <img :src="product.image" height="110" width="110">
                     <a class="catalog-item__name">{{ product.title }}</a>
                     <a>{{ product.category }}</a>

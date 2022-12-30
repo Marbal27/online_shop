@@ -2,8 +2,10 @@
     <div class="main-wrapper">
         <div class="header">
             <div class="header-left">
-                <img src="@/assets/логотип.png">
-                <div class="header-left__text1">Покупки в радость</div>
+                <!-- <img src="@/assets/логотип.png"> -->
+                <div class="header-left__text1"
+                    style="font-family:'Oswald'; font-size: 40px; font-weight: 600; margin-top: 30px;">Покупки
+                    в радость</div>
                 <div class="header-left__category">
                     <!-- <select-page :options="options" v-model="category"
                     @select="optionSelect" :selected="selected"></select-page> -->
@@ -35,7 +37,7 @@ export default {
 
     data() {
         return {
-            
+
             category: "",
             options: [
                 { name: "Все", value: 1 },
@@ -49,10 +51,10 @@ export default {
         }
     },
     methods: {
-    //     onPageChange(page) {
-    //   console.log(page)
-    //   this.currentPage = page;
-    // },
+        //     onPageChange(page) {
+        //   console.log(page)
+        //   this.currentPage = page;
+        // },
         optionSelect(category) {
             this.selected = category.name
         }

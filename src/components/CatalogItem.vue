@@ -1,20 +1,24 @@
 <template>
     <div class="category-catalog">
-        <div class="category" style="font-family: 'Oswald'; margin-bottom: 25px;">
-            <input type="radio" @click="getDataOptionALL()" id="all" />
-            <label for="all" @click="getDataOptionALL()">Все</label>
-            <input type="radio" v-model="category" @click="(this.category = 'jewelery'), getDataOption()"
-                id="jewelery" />
-            <label for="jewelery" @click="(this.category = 'jewelery'), getDataOption()">Украшения</label>
+        <div class="category" style="font-family: 'Oswald'; margin-bottom: 25px; ">
+            <input type="radio" @click="getDataOptionALL()" id="all" style="cursor: pointer;" />
+            <label for="all" @click="getDataOptionALL()" style="cursor: pointer;">Все</label>
+            <input type="radio" v-model="category" @click="(this.category = 'jewelery'), getDataOption()" id="jewelery"
+                style="cursor: pointer;" />
+            <label for="jewelery" @click="(this.category = 'jewelery'), getDataOption()"
+                style="cursor: pointer;">Украшения</label>
             <input type="radio" v-model="category" @click="(this.category = 'electronics'), getDataOption()"
-                id="electronics" />
-            <label for="electronics" @click="(this.category = 'electronics'), getDataOption()">Электроника</label>
-            <input type="radio" v-model="category" @click='(this.category = men), getDataOption()'
-                id="men's clothing" />
-            <label for="men's clothing" @click='(this.category = men), getDataOption()'>Мужская одежда</label>
+                id="electronics" style="cursor: pointer;" />
+            <label for="electronics" @click="(this.category = 'electronics'), getDataOption()"
+                style="cursor: pointer;">Электроника</label>
+            <input type="radio" v-model="category" @click='(this.category = men), getDataOption()' id="men's clothing"
+                style="cursor: pointer;" />
+            <label for="men's clothing" @click='(this.category = men), getDataOption()' style="cursor: pointer;">Мужская
+                одежда</label>
             <input type="radio" v-model="category" @click='(this.category = women), getDataOption()'
-                id="women's clothing" />
-            <label for="women's clothing" @click='(this.category = women), getDataOption()'>Женская одежда</label>
+                id="women's clothing" style="cursor: pointer;" />
+            <label for="women's clothing" @click='(this.category = women), getDataOption()'
+                style="cursor: pointer;">Женская одежда</label>
         </div>
 
         <div class="catalog-title">
@@ -48,15 +52,18 @@
 
         <div class="pagination">
             <div class="pagination-item">
-                <button type="button" @click="direction = -1, getNewPage(), page -= 1">Назад</button>
+                <button class="pagination-item__button" @click="direction = -1, getNewPage(), page -= 1">Назад</button>
             </div>
-            <div>
+            <div style="font-family: 'Oswald'; margin: 10px">
                 {{ this.page }}
+
             </div>
             <div class="pagination-item">
-                <button type="button" @click="direction = 1, getNewPage(), page += 1">Вперёд</button>
+                <button class="pagination-item__button" @click="direction = 1, getNewPage(), page += 1">Вперёд</button>
             </div>
         </div>
+
+
     </div>
 
 </template>
@@ -71,16 +78,16 @@ export default {
         StarRating,
         ModelWindow
     },
-    props: {
 
+    computed: {
 
     },
-
     data() {
         return {
             model: false,
             products: [],
             page_one: [],
+            page_two: [],
             id: '',
             direction: 0,
             page: 1,
@@ -88,13 +95,14 @@ export default {
             men: "men's clothing",
             women: "women's clothing",
             windowOpen: false,
-
+            limit: 10,
             img: '',
             price: 0,
             title: '',
             description: '',
             rating_rate: 0,
             rating_count: 0,
+
         }
     },
 
@@ -113,26 +121,29 @@ export default {
                 .then((res) => res.json())
                 .then((json) => (this.products = json));
         },
-        // getNewPage() {
-        //     if (this.direction == 1) {
-        //         for (let i = this.id; i < i + 10; i++) {
-        //             this.page_one[i] = this.products[i + 10]
-        //         }
-        //     }
-        //     else if (this.direction == -1) {
-        //         if (this.products[0].id != 1) {
-        //             for (let i = this.id; i < i - 10; i--) {
-        //                 this.page_one[i] = this.products[i - 10]
-        //             }
-        //         }
+        getNewPage() {
+            this.page_one = []
+            this.page_two = []
+            if (this.page == 1) {
 
-        //     }
-        // },
+                for(let i=0; i<10; i++) {
+                    this.page_one = this.products[i]
+                    
+                }
+
+            }
+            else if(this.page == 2){
+                for(let i=0; i<10; i++) {
+                    this.page_two = this.products[i+10]
+                }
+            }
+
+        },
 
     },
 
     mounted() {
-        fetch('https://fakestoreapi.com/products')
+        fetch('https://fakestoreapi.com/products/?limit=' + this.limit)
             .then(res => res.json())
             .then(json => { this.products = json })
     },
@@ -278,10 +289,33 @@ a {
     justify-content: center;
 }
 
-.pagination-item {}
-
-.active {
-    background-color: #f28d8d;
+.pagination-item__button {
+    width: 70px;
+    height: 40px;
+    text-align: center;
+    display: block;
+    font-family: 'Oswald';
+    font-weight: 300;
+    font-size: 16px;
+    border: #ffffff 3px solid;
     color: #ffffff;
+    background-color: #e087a4;
+    transition: .5s;
+    border-radius: 7px;
+}
+
+.pagination-item__button:hover {
+    top: 5px;
+    transition: .5s;
+    color: #b95454;
+    border: #b95454 3px solid;
+    cursor: pointer;
+
+}
+
+.pagination-item__button:active {
+    color: rgb(0, 0, 0);
+    border: #000000 3px solid;
+    transition: .07s;
 }
 </style>

@@ -86,7 +86,7 @@ export default {
             products: [],
             page_one: [],
             page_two: [],
-            id: '',
+            id: 1,
             direction: 0,
             page: 1,
             category: '',
@@ -118,6 +118,7 @@ export default {
                 .then((res) => res.json())
                 .then((json) => (this.products = json));
         },
+
         getNewPage() {
             this.page_one = this.products.slice(10, 20)
             this.page_two = this.products.slice(0, 10)

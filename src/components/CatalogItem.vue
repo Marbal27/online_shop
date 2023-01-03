@@ -53,7 +53,7 @@
         <div class="pagination">
             <div class="pagination-item">
                 <button v-if="page != 1" class="pagination-item__button"
-                    @click="direction = -1, getNewPage(), page -= 1">Назад</button>
+                    @click="direction = -1, getNewPage(), this.page = 1">Назад</button>
             </div>
             <div style="font-family: 'Oswald'; margin: 10px">
                 {{ this.page }}
@@ -61,7 +61,7 @@
             </div>
             <div class="pagination-item">
                 <button v-if="page != 2" class="pagination-item__button"
-                    @click="direction = 1, getNewPage(), page += 1">Вперёд</button>
+                    @click="direction = 1, getNewPage(), this.page = 2">Вперёд</button>
             </div>
         </div>
 
@@ -80,10 +80,6 @@ export default {
         StarRating,
         ModelWindow
     },
-
-    computed: {
-
-    },
     data() {
         return {
             model: false,
@@ -101,13 +97,12 @@ export default {
             img: '',
             price: 0,
             title: '',
-            description: '',
+            description: -1,
             rating_rate: 0,
             rating_count: 0,
 
         }
     },
-
 
     methods: {
 
@@ -124,20 +119,13 @@ export default {
                 .then((json) => (this.products = json));
         },
         getNewPage() {
-            this.page_one = []
-            this.page_two = []
+            this.page_one = this.products.slice(10, 20)
+            this.page_two = this.products.slice(0, 10)
             if (this.page == 1) {
-
-                for (let i = 0; i < 10; i++) {
-                    this.page_one = this.products[i]
-
-                }
-
+                console.log(this.page_one)
             }
             else if (this.page == 2) {
-                for (let i = 0; i < 10; i++) {
-                    this.page_two = this.products[i + 10]
-                }
+                console.log(this.page_two)
             }
 
         },
@@ -145,7 +133,7 @@ export default {
     },
 
     mounted() {
-        fetch('https://fakestoreapi.com/products/?limit=' + this.limit)
+        fetch('https://fakestoreapi.com/products/')
             .then(res => res.json())
             .then(json => { this.products = json })
     },
@@ -289,6 +277,7 @@ a {
 .pagination {
     display: flex;
     justify-content: center;
+
 }
 
 .pagination-item__button {

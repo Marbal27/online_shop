@@ -53,7 +53,7 @@
         <div class="pagination">
             <div class="pagination-item">
                 <button v-if="page != 1" class="pagination-item__button"
-                    @click="direction = -1, getNewPage(), this.page = 1">Назад</button>
+                    @click="direction = -1, getNewPage(), this.page -= 1">Назад</button>
             </div>
             <div style="font-family: 'Oswald'; margin: 10px">
                 {{ this.page }}
@@ -61,7 +61,7 @@
             </div>
             <div class="pagination-item">
                 <button v-if="page != 2" class="pagination-item__button"
-                    @click="direction = 1, getNewPage(), this.page = 2">Вперёд</button>
+                    @click="direction = 1, getNewPage(), this.page += 1">Вперёд</button>
             </div>
         </div>
 

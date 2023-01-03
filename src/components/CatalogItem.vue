@@ -52,14 +52,16 @@
 
         <div class="pagination">
             <div class="pagination-item">
-                <button class="pagination-item__button" @click="direction = -1, getNewPage(), page -= 1">Назад</button>
+                <button v-if="page != 1" class="pagination-item__button"
+                    @click="direction = -1, getNewPage(), page -= 1">Назад</button>
             </div>
             <div style="font-family: 'Oswald'; margin: 10px">
                 {{ this.page }}
 
             </div>
             <div class="pagination-item">
-                <button class="pagination-item__button" @click="direction = 1, getNewPage(), page += 1">Вперёд</button>
+                <button v-if="page != 2" class="pagination-item__button"
+                    @click="direction = 1, getNewPage(), page += 1">Вперёд</button>
             </div>
         </div>
 
@@ -126,15 +128,15 @@ export default {
             this.page_two = []
             if (this.page == 1) {
 
-                for(let i=0; i<10; i++) {
+                for (let i = 0; i < 10; i++) {
                     this.page_one = this.products[i]
-                    
+
                 }
 
             }
-            else if(this.page == 2){
-                for(let i=0; i<10; i++) {
-                    this.page_two = this.products[i+10]
+            else if (this.page == 2) {
+                for (let i = 0; i < 10; i++) {
+                    this.page_two = this.products[i + 10]
                 }
             }
 

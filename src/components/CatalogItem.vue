@@ -44,7 +44,6 @@
             </div>
         </div>
 
-
         <div v-if="page != 2" class="catalog-title">
 
             <div class="catalog-item" v-for="(product, index) in page_two" :key="index">
@@ -171,7 +170,7 @@ export default {
 
 <style>
 .catalog-button {
-    
+
 }
 
 .modal-wrapper {

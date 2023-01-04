@@ -22,33 +22,6 @@
                 style="cursor: pointer;">Женская одежда</label>
         </div>
 
-        <!-- <div class="catalog-title" >
-            <div class="catalog-item" v-for="(product, index) in products" :key="index">
-                <div class="catalog-item__card" @click="(this.windowOpen = true), (this.id = product.id), (this.img = product.image),
-    (this.price = product.price),
-    (this.title = product.title),
-    (this.category = product.category),
-    (this.description = product.description),
-    (this.rating_rate = product.rating.rate),
-    (this.rating_count = product.rating.count)">
-                    <img :src="product.image" height="110" width="110">
-                    <a class="catalog-item__name">{{ product.title }}</a>
-                    <a>{{ product.category }}</a>
-                    <h2 style="font-family:'Oswald';">{{ product.price * 68 }}руб</h2>
-                    <button class="catalog-item__button">Добавить в корзину</button>
-                    <div class="rating">
-                        <star-rating :rating="product.rating.rate" class="rating__star"
-                            v-bind:star-size="20"></star-rating>
-                    </div>
-                </div>
-            </div>
-
-        </div> -->
-
-
-
-
-
         <div v-if="page != 1" class="catalog-title">
             <div class="catalog-item" v-for="(product, index) in page_one" :key="index">
                 <div class="catalog-item__card" @click="(this.windowOpen = true), (this.id = product.id), (this.img = product.image),
@@ -197,8 +170,37 @@ export default {
 </script>
 
 <style>
-.catalog-button {}
+.catalog-button {
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    display: block;
+    font-family: 'Oswald';
+    font-weight: 300;
+    font-size: 16px;
+    border: #ffffff 3px solid;
+    color: #ffffff;
+    background-color: #e087a4;
+    transition: .5s;
+    border-radius: 7px;
+    margin: 6px;
+    margin-left: 10px;
+}
 
+.catalog-button:hover {
+    top: 5px;
+    transition: .5s;
+    color: #b95454;
+    border: #b95454 3px solid;
+    cursor: pointer;
+
+}
+
+.catalog-button:active {
+    color: rgb(0, 0, 0);
+    border: #000000 3px solid;
+    transition: .07s;
+}
 .modal-wrapper {
     position: fixed;
     z-index: 0;

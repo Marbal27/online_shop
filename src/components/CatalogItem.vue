@@ -1,4 +1,5 @@
 <template>
+    <button v-if="page != 2" class="catalog-button" @click="getNewPage()">Перейти в каталог</button>
     <div class="category-catalog">
         <div class="category" style="font-family: 'Oswald'; margin-bottom: 25px; ">
             <input type="radio" @click="getDataOptionALL()" id="all" style="cursor: pointer;" />
@@ -21,9 +22,9 @@
                 style="cursor: pointer;">Женская одежда</label>
         </div>
 
-        <div class="catalog-title">
-            <div class="catalog-item" v-for="(product, index) in products" :key="index">
-                <div class="catalog-item__card" @click="(this.windowOpen = true), (this.id = product.id), (this.img = product.image),
+        <div v-if="page != 1" class="catalog-title">
+            <div class="catalog-item" v-for="(product, index) in page_one" :key="index">
+                <div  class="catalog-item__card" @click="(this.windowOpen = true), (this.id = product.id), (this.img = product.image),
     (this.price = product.price),
     (this.title = product.title),
     (this.category = product.category),
@@ -39,10 +40,33 @@
                         <star-rating :rating="product.rating.rate" class="rating__star"
                             v-bind:star-size="20"></star-rating>
                     </div>
-
                 </div>
-
             </div>
+        </div>
+
+
+        <div v-if="page != 2" class="catalog-title">
+
+            <div class="catalog-item" v-for="(product, index) in page_two" :key="index">
+                <div  class="catalog-item__card" @click="(this.windowOpen = true), (this.id = product.id), (this.img = product.image),
+    (this.price = product.price),
+    (this.title = product.title),
+    (this.category = product.category),
+    (this.description = product.description),
+    (this.rating_rate = product.rating.rate),
+    (this.rating_count = product.rating.count)">
+                    <img :src="product.image" height="110" width="110">
+                    <a class="catalog-item__name">{{ product.title }}</a>
+                    <a>{{ product.category }}</a>
+                    <h2 style="font-family:'Oswald';">{{ product.price * 68 }}руб</h2>
+                    <button class="catalog-item__button">Добавить в корзину</button>
+                    <div class="rating">
+                        <star-rating :rating="product.rating.rate" class="rating__star"
+                            v-bind:star-size="20"></star-rating>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <model-window v-if="windowOpen" @close="windowOpen = false" :title="this.title" :img="this.img"
@@ -124,9 +148,11 @@ export default {
             this.page_two = this.products.slice(0, 10)
             if (this.page == 1) {
                 console.log(this.page_one)
+                window.scrollTo(0,0);
             }
             else if (this.page == 2) {
                 console.log(this.page_two)
+                window.scrollTo(0,0);
             }
 
         },
@@ -144,6 +170,10 @@ export default {
 </script>
 
 <style>
+.catalog-button {
+    
+}
+
 .modal-wrapper {
     position: fixed;
     z-index: 0;
